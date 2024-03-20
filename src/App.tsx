@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter, Routes, Route } from "react-router-dom";
+
+import ClassComponentExample from "./components/ClassComponentExample";
+import Layout from "./components/Layout";
 import './App.css';
+import FunctionalComponent from "./components/FunctionalComponent";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <ClassComponentExample/>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout/>}>
+                <Route index path="functional-component" element={<FunctionalComponent/>} />
+                <Route path="class-component" element={<ClassComponentExample/>} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
   );
 }
-
 export default App;
